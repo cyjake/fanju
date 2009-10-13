@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <title>西园人家</title>
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="/misc/screen.css" type="text/css" media="screen" />
+    <link rel="shortcut icon" href="/misc/favicon.ico"/>
+    {% block head %}{% endblock %}
+  </head>
+  <body>
+    <div id="head">
+      <div class="inner">
+        <h1><a href="/">西园</a></h1>
+	<ul class="reset" id="nav">
+          <li class="{% block home_tab_selected %}{% endblock %}"><a href="/">首页</a></li>
+          <li class="{% block group_tab_selected %}{% endblock %}"><a href="/group/">天团</a></li>
+	</ul>
+      </div>
+    </div>
+    <div id="neck">
+      <div class="inner">
+        <ul id="subnav" class="reset">{% block subnav %}{% endblock %}</ul>
+	<div id="user">
+          {% if user %}
+	  你好，{{ user.nickname }}！
+	  {% if is_admin %} | <a href="/_ah/admin">管理</a>{% endif %}
+	  | <a href="{{ sign_out }}">退出</a>
+	  {% else %}
+	  <a href="{{ sign_in }}">登录</a>
+	  {% endif %}
+	</div>
+      </div>
+    </div>
+    <div id="wrapper">
+      <div id="page" class="inner">
+      {% block page %}{% endblock %}        
+      </div>
+    </div>
+  </body>
+</html>

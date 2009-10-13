@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<meta http-equiv="Refresh" content="2; URL={{ url|default:"/" }}">
+{% endblock %}
+
+{% block page %}
+<h2>正在跳转……</h2>
+<p class="notify">
+{% if code_login %}
+好像你还没有登陆诶，即将跳转到登陆页面。
+{% endif %}
+{% if code_power %}
+权限不够哦
+{% endif %}
+{% if code_param %}
+参数错误
+{% endif %}
+{% if code_missing %}
+你要找的东西好像已经不见了……
+{% endif %}
+</p>
+<p>西园将在两秒钟内重定向至 <a href="{{ url|default:"/" }}">该页</a>。</p>
+{% endblock %}

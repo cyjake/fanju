@@ -1,0 +1,89 @@
+{% extends 'group.html' %}
+
+{% block page %}
+<div class="left" id="content">
+<h2>
+  {{ group.name|escape }}
+  <a href="/group/{{ group.key.id }}" class="permalink" title="永久链接">¶</a>
+</h2>
+{% if is_valid_user %}
+<form method="post" action="/fee/save/">
+  <fieldset>
+    <legend>又腐败了……</legend>
+    <div class="row">
+      <label>总共花掉了：</label>
+      <input type="text" name="amount" value="{{ fee.amount }}" />
+      <p class="notify">可以带小数点，不可以是负数，更不能是数字之外的东西。</p>
+    </div>
+    <div class="row">
+      <label>买单的是：</label>
+      <select name="payer">
+	{% for member in members %}
+	<option value="{{ member.key.id }}">{{ member.name|escape }}</option>
+	{% endfor %}
+      </select>
+      <p class="notify">记得买单的人不能不去哦</p>
+    </div>
+    <div class="row">
+      <label>去的人有：</label>
+      <div class="checkboxes">
+	{% for member in members %}
+	<input type="checkbox" name="participants" id="participant_{{ member.key.id }}" value="{{ member.key.id }}" checked="checked"/>
+	<label for="participant_{{ member.key.id }}">{{ member.name|escape }}</label>
+	{% endfor %}
+      </div>
+    </div>
+    <div class="row">
+      <label>日期：</label>
+      <input type="text" name="date" value="{{ fee.date }}" />
+      <p class="notify">格式：YYYY/MM/DD。当天的话，留空就行。</p>
+    </div>
+    <div class="row last_row">
+      <input type="hidden" name="group_id" value="{{ group.key.id }}" />
+      <input type="submit" value="保存" class="button"/><a href="/group/">取消</a>
+    </div>
+  </fieldset>
+</form>
+{% endif %}
+</div>
+<div id="side" class="right">
+  <h3>轮到{{ due_payer }}报告啦</h3>
+  <p>这厮欠了<span class="cny">{{ due_amount|floatformat }}</span>了</p>
+</div>
+<div class="clear"></div>
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+<thead>
+  <tr>
+    <th>日期</th>
+    {% for member in members %}
+    <th>{{ member.name }}</th>
+    {% endfor %}
+    <th>&nbsp;</th>
+  </tr>
+</thead>
+<tbody>
+  {% for fee in fees %}
+  <tr>
+    <td>{{ fee.date|date:"Y年m月d日 H:i" }}</td>
+    {% for p in fee.spenders %}
+    <td class="cny{% if p.payer %} payer{% endif %}">{{ p.amount|floatformat }}</td>
+    {% endfor %}
+    <td class="operation">
+      <a href="/fee/delete/{{ fee.id }}">删除</a>
+    </td>
+  </tr>
+  {% endfor %}
+</tbody>
+{% if group.summaries %}
+<tfoot>
+  <tr>
+    <td>&nbsp;</td>
+    {% for summary in group.summaries %}
+    <td class="cny">{{ summary|floatformat }}</td>
+    {% endfor %}
+    <td>&nbsp;</td>
+  </tr>
+</tfoot>
+{% endif %}
+</table>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block group_tab_selected %}selected{% endblock %}
+
+{% block subnav %}
+<li><a href="/group/">查看所有</a></li>
+{% if user %}
+<li><a href="/group/edit/" title="添加">添加新团队</a></li>
+{% if group %}
+<li><a href="/group/edit/{{ group.key.id }}" title="修改">修改{{ group.name|escape }}</a></li>
+<li><a href="/group/delete/{{ group.key.id }}" title="删除">删除{{ group.name|escape }}</a></li>
+{% endif %}
+{% endif %}
+{% endblock %}
+

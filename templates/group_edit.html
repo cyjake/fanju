@@ -1,0 +1,31 @@
+{% extends 'group.html' %}
+
+{% block page %}
+<h2>编辑团体</h2>
+<form method="post" action="/group/save/">
+  <fieldset>
+    <legend>腐败株式会社</legend>
+    {% if not user %}<p class="nitify">请先登陆</p>{% endif %}
+    <div class="row">
+      <label>大名：</label>
+      <input type="text" name="name" value="{{ group.name }}" />
+      <p class="notify">不能为空哦。</p>
+    </div>
+    <div class="row">
+      <label>成员：</label>
+      <input type="text" name="members" value="{% for user in users %}{{ user.name }} {% endfor %}" size="50"/>
+      {% if members_error %}<p class="notify">添加以后只可以增加成员，不能修改或者去除。</p>{% endif %}
+      <p class="notify">成员名用空格隔开，如“张学友 苏有朋”。</p>
+    </div>
+    <div class="row">
+      <label>馆里猿：</label>
+      <input type="text" name="owner" value="{{ group.owner.name }}" />
+      <p class="notify">可以留空，也可以填 Gmail，例如 foo@gmail.com。</p>
+    </div>
+    <div class="last_row row">
+      <input type="hidden" name="group_id" value="{{ group.key.id }}" />
+      <input type="submit" value="保存" /><a href="/group/{{ group.key.id }}">取消</a>
+    </div>
+  </fieldset>
+</form>
+{% endblock %}

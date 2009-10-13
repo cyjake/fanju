@@ -1,0 +1,12 @@
+{% extends 'group.html' %}
+
+{% block page %}
+<h2>确定么？</h2>
+<div class="notify_box">
+  <p class="notify">你真的要处理掉<span style="text-decoration: underline;">{{ name|escape }}</span>？你不是认真的吧？你是认真的吗？</p>
+  <div class="options">
+    <a href="{{ confirm }}" title="确定" class="button">确定</a>
+    <a href="{{ cancel }}" title="取消">取消</a>
+  </div>
+</div>
+{% endblock %}

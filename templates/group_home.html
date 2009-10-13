@@ -1,0 +1,30 @@
+{% extends 'group.html' %}
+
+{% block page %}
+<h2>团体列表</h2>
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+<thead>
+  <tr>
+    <th>名字</th>
+    <th>成员</th>
+    <th>馆里猿</th>
+    <th>&nbsp;</th>
+  </tr>
+</thead>
+{% for group in groups %}
+<tbody>
+  <tr>
+    <td><a href="/group/{{ group.key.id }}">{{ group.name|escape }}</a></td>
+    <td>{{ group.members|length }} 个成员</td>
+    <td>{{ group.owner.nickname }}</td>
+    <td>
+      {% ifequal group.owner user %}
+      <a href="/group/edit/{{ group.key.id }}">编辑</a> |
+      <a href="/group/delete/{{ group.key.id }}">删除</a>
+      {% endifequal %}
+    </td>
+  </tr>
+  {% endfor %}
+</tbody>
+</table>
+{% endblock %}

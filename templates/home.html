@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block home_tab_selected %}selected{% endblock %}
+
+{% block page %}
+<div id="content" class="left">
+  <h2>近日消费</h2>
+  <table width="100%" cellspacing="0" cellpadding="0" border="0">
+    <thead>
+      <tr>
+	<th>日期</th>
+	<th>天团</th>
+	<th>花费</th>
+	<th>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for fee in fees %}
+      <tr>
+	<td>{{ fee.date|date:"Y年m月d日" }}</td>
+	<td><a href="/group/{{ fee.group.key.id }}">{{ fee.group.name }}</a></td>
+	<td class="cny">{{ fee.amount|floatformat }}</td>
+	<td class="operation">
+	  <a href="/group/{{ fee.group.key.id }}">明细</a>
+	  {% if user %}
+	  {% ifequal fee.group.owner user %}
+	  | <a href="/fee/delete/{{ fee.key.id }}">删除</a>
+	  {% endifequal %}
+	  {% endif %}
+	</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<div id="side" class="right">
+  {% if not user %}
+  <div class="section">
+    <h3>好像你还没有登陆诶</h3>
+    <p>要<a href="{{ sign_in }}">登陆</a>么？</p>
+  </div>
+  {% endif %}
+  <div class="section">
+    <h3>西园是神马东西</h3>
+    <p>西园来自于西湖科技园之简称，同事之间经常出去吃饭，有个记录可以方便决策这次应该谁报告一点。</p>
+  </div>
+</div>
+{% endblock %}

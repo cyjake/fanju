@@ -1,0 +1,125 @@
+/* westpark
+ * author: jakeplus@gmail.com
+ * scheme: http://kuler.adobe.com/#themeID/566894
+ * palette: d8e4cc 84ecb5 48b7a7 057677 202528
+ */
+
+/* reset */
+html, head, body, form, table, thead, tbody, tr, td, div, h1, h2, h3, h4, h5, p, ul.reset, ol.reset, li, img, legend, fieldset, form { 
+    padding: 0; margin: 0; 
+}
+body { font-family: "Microsoft Yahei", "微软雅黑", Arial; width: 100%; text-align: left;}
+body { font-size: 9pt; }
+ul { list-style: circle; padding-left: 20px; maring: 5px 0; }
+ul.reset { list-style: none; width: 100%; overflow: auto; }
+ul.reset li { float: left; margin-right: 5px; }
+img { border: 0; }
+
+/* common */
+.hidden { display: none; }
+.clear { clear: both; }
+.round { -moz-border-radius: 10px; -webkit-border-radius: 10px; }
+.notify { 
+    background: #fff url(icon.gif) no-repeat 0 5px; 
+    border: 1px solid #d8e4cc; padding: 2.5px 5px; 
+    padding-left: 15px; border-left: none; border-top: none;
+}
+.button {
+    text-decoration: none;
+    background-color: #d8e4cc;
+    border: 1px solid #202528;
+    border-left-color: #84ecb5; border-top-color: #84ecb5;
+}
+
+/* layout */
+body { text-align: center; }
+.inner { width: 800px; margin: 0 auto; text-align: left; overflow: auto; }
+.left { float: left; }
+.right { float: right; }
+
+#head { background-color: #202528; padding-top: 50px; }
+h1 a { 
+    text-decoration: none; color: #d8e4cc; font-size: 32pt; 
+}
+#nav { margin-top: 20px; }
+#nav li { padding-top: 5px; overflow: hidden; }
+#nav li.selected { padding-top: 0; }
+#nav a {
+    padding: 5px 10px; background-color: #48b7a7;
+    -moz-border-radius-topleft: 5px; 
+    -moz-border-radius-topright: 5px; 
+    -webkit-border-radius-topleft: 5px;
+    -webkit-border-radius-topright: 5px;
+    text-decoration: none; 
+    display: block; color: #202528;
+}
+#nav a:hover { background-color: #d8e4cc; }
+#nav li.selected a {
+    background-color: #84ecb5; padding-top: 10px; 
+}
+#neck { border: 2px solid #84ecb5; background-color: #84ecb5; }
+#neck .inner { padding: 2.5px 10px; overflow: auto; }
+#subnav {
+    text-align: left; padding-left: 10px; width: 70%;
+    float: left; 
+}
+#neck #user { float: right; text-align: right; }
+
+#wrapper { margin-top: 20px; background-color: #fff; }
+#content { width: 66%; }
+#side { width: 30%; padding: 10px 0; }
+h2 { font-size: 160%; padding: 10px 0; }
+h3 { font-size: 120%; padding: 5px 0; }
+h2, h3 { color: #057677; }
+h2 a, h3 a { color: #057677; text-decoration: none; }
+a.permalink:hover { text-decoration: underline; }
+p { padding: 5px 0; }
+
+.notify_box { 
+    border: 5px solid #d8e4cc;
+    width: 500px;
+    overflow: auto;
+    padding: 20px;
+}
+.options { margin-top: 10px; }
+.notify_box .options a {
+    font-size: 120%;
+    float: left;
+    margin-right: 10px;
+    padding: 5px 10px;
+    color: #202528;
+}
+.options a:hover {
+    text-decoration: none;
+}
+.cny:before {
+    content: "￥";
+}
+
+form { width: 520px; margin: 10px 0; }
+fieldset { padding: 10px 20px; -padding-top: 0px; border: 5px solid #d8e4cc; }
+legend { -margin-bottom: 10px; padding: 0 10px; }
+form div.row { padding: 5px 0; width: 100%; overflow: auto; margin-top: 10px; }
+form div.row .notify { margin-left: 90px; margin-top: 5px; color: #48b7a7; }
+form div.last_row { text-align: right; padding-right: 1px; }
+form div.last_row input { margin-right: 5px; }
+label { display: block; float: left; width: 80px; padding: 2.5px 0; text-align: right; margin-right: 10px; }
+.checkboxes label { float: none; display: inline; margin-left: -5px; padding-bottom: 5px; }
+input[type='text'], input[type='password'] { border: none; border-bottom: 1px solid #202528; }
+select { border: 1px solid #202528; }
+
+table { margin: 20px 0;}
+thead th { background-color: #057677; color: #84ecb5; padding: 5px; border-bottom: 1px solid #202528; }
+td { padding: 5px; }
+td.operation {  text-align: right; }
+td.payer { background-color: #48b7a7; }
+tbody tr:nth-child(2n) { background-color: #84ecb5; }
+tbody tr:hover { background-color: #d8e4cc; }
+tfoot td { border-top: 1px solid #202528; }
+
+#side .section { 
+    margin-top: 10px; margin-bottom: 20px;
+    padding: 5px 10px; background-color: #d8e4cc;
+    -moz-border-radius: 5px; 
+    -webkit-border-radius: 5px;
+}
