@@ -69,7 +69,7 @@
     <td class="cny{% if p.payer %} payer{% endif %}">{{ p.amount|floatformat }}</td>
     {% endfor %}
     <td class="operation">
-      <a href="/fee/delete/{{ fee.id }}">删除</a>
+      {% if user %}<a href="/fee/delete/{{ fee.id }}">删除</a>{% endif %}
     </td>
   </tr>
   {% endfor %}
